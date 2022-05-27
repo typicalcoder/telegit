@@ -94,16 +94,17 @@ Merged By:          ${merged_by?.login}
 [Link to Diff](${pr_url}/files)
 [Link to Repo](https://github.com/${repo}/)
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
+
         case "push":
             return `
-       
 Author:       ${push_author}
         
 Commits:
-${JSON.parse(push_commits).map(v => `[${v?.message} by ${v?.author?.username}](${v.url})\n`)}
+${push_commits}
         
 [Link to Compare](${push_compare_url})
 [Link to Repo](https://github.com/${repo}/)`
+        //${JSON.parse(push_commits).map(v => `[${v?.message} by ${v?.author?.username}](${v.url})\n`)}
         case "watch":
             return `
 ⭐️⭐️⭐️
