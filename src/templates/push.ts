@@ -6,6 +6,7 @@ Author:       ${process.env.INPUT_PUSH_AUTHOR}
 Commits:
 ${
     process.env.INPUT_PUSH_COMMITS &&
+    JSON.parse(process.env.INPUT_PUSH_COMMITS).length > 0 &&
     JSON.parse(process.env.INPUT_PUSH_COMMITS).map(
         (v: Record<string, any>) => 
             `  [${v.message} by ${v.author.username}](${v.url})  `
