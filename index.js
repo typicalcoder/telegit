@@ -100,7 +100,7 @@ Merged By:          ${merged_by.login}
 Author:       ${push_author}
         
 Commits:
-${spush_commits.map(v => `[${v.message} by ${v.author.username}](${v.url})\n`)}
+${push_commits.map(v => `[${v.message} by ${v.author.username}](${v.url})\n`)}
         
 [Link to Compare](${push_compare_url})
 [Link to Repo](https://github.com/${repo}/)`
