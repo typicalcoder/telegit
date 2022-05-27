@@ -7,11 +7,11 @@ import defaultTemplate from './templates/default';
 import {TemplateEnum} from "./enums";
 const getTemplate = (type: TemplateEnum): string => {
     switch (type) {
-        case 'push': return pushTemplate;
-        case 'pull_request': return prTemplate;
-        case 'pull_request_target': return prTargetTemplate;
-        case 'issues': return issuesTemplate;
-        case 'schedule': return scheduleTemplate;
+        case TemplateEnum.push: return pushTemplate;
+        case TemplateEnum.pull_request: return prTemplate;
+        case TemplateEnum.pull_request_target: return prTargetTemplate;
+        case TemplateEnum.issues: return issuesTemplate;
+        case TemplateEnum.schedule: return scheduleTemplate;
         default: return defaultTemplate;
     }
 };
