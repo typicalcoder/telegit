@@ -56,6 +56,9 @@ inputs:
   pr_url:
     description: 'Link to PR'
     default: ${{ github.event.pull_request.html_url }}
+  pr_merged:
+    description: 'Merged'
+    default: ${{ github.event.pull_request.merged }}
   pr_merged_by:
     description: 'Merged by User'
     default: ${{ github.event.pull_request.merged_by.login }}

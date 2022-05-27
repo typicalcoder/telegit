@@ -3582,6 +3582,7 @@ const {
     INPUT_PR_HEAD_REF: head_ref,
     INPUT_PR_CHANGED_FILES: changed_files,
     INPUT_PR_MERGED_BY: merged_by,
+    INPUT_PR_MERGED: merged,
     INPUT_PR_URL: pr_url,
     INPUT_PUSH_AUTHOR: push_author,
     INPUT_PUSH_COMPARE_URL: push_compare_url,
@@ -3649,7 +3650,7 @@ Merged By:          ${ghactor}
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
         case "pull_request_target":
             return `
-PR ${prstate}
+PR ${merged ? "merged" : prstate}
         
 PR Title:       ${ptitle}
         
@@ -3658,8 +3659,7 @@ PR Body:        *${pbody}*
 Merged By:          ${merged_by}
         
 [Link to Diff](${pr_url}/files)
-[Link to Repo](https://github.com/${repo}/)
-[Build log here](https://github.com/${repo}/commit/${sha}/checks)`
+[Link to Repo](https://github.com/${repo}/)`
 
         case "push":
             const ref = process.env.GITHUB_REF.split('/');
@@ -3669,7 +3669,7 @@ Pushed commits to ${ref[ref.length - 1]}
 Author:       ${push_author}
         
 Commits:
-${JSON.parse(push_commits).map(v => `[${v.message} by ${v.author.username}](${v.url})\n`)}
+${JSON.parse(push_commits).map(v => `  [${v.message} by ${v.author.username}](${v.url})\n  `)}
         
 [Link to Compare](${push_compare_url})
 [Link to Repo](https://github.com/${repo}/)`
