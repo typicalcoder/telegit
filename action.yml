@@ -58,7 +58,7 @@ inputs:
     default: ${{ github.event.pull_request.html_url }}
   pr_merged_by:
     description: 'Merged by User'
-    default: ${{ github.event.pull_request.merged_by }}
+    default: ${{ github.event.pull_request.merged_by.login }}
   push_commits:
     description: 'Push commits'
     default: ${{ toJSON(github.event.commits) }}

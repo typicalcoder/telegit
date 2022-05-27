@@ -89,7 +89,7 @@ PR Title:       ${ptitle}
         
 PR Body:        *${pbody}*
         
-Merged By:          ${merged_by.login}
+Merged By:          ${merged_by}
         
 [Link to Diff](${pr_url}/files)
 [Link to Repo](https://github.com/${repo}/)
