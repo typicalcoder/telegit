@@ -12,6 +12,14 @@ const {
     INPUT_PR_STATE: prstate,
     INPUT_PR_TITLE: ptitle,
     INPUT_PR_BODY: pbody,
+    INPUT_PR_BASE_REF: base_ref,
+    INPUT_PR_HEAD_REF: head_ref,
+    INPUT_PR_CHANGED_FILES: changed_files,
+    INPUT_PR_MERGED_BY: merged_by,
+    INPUT_PR_URL: pr_url,
+    INPUT_PUSH_AUTHOR: push_author,
+    INPUT_PUSH_COMPARE_URL: push_compare_url,
+    INPUT_PUSH_COMMITS: push_commits,
     GITHUB_EVENT_NAME: ghevent,
     GITHUB_REPOSITORY: repo,
     GITHUB_ACTOR: ghactor,
@@ -68,11 +76,34 @@ PR Title:       ${ptitle}
         
 PR Body:        *${pbody}*
         
-PR By:          ${ghactor}
+Merged By:          ${ghactor}
         
-[Link to Issue](https://github.com/${repo}/pull/${pnum})
+[Link to PR](https://github.com/${repo}/pull/${pnum})
 [Link to Repo ](https://github.com/${repo}/)
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
+        case "pull_request_target":
+            return `
+PR ${prstate}
+        
+PR Title:       ${ptitle}
+        
+PR Body:        *${pbody}*
+        
+Merged By:          ${merged_by?.login}
+        
+[Link to Diff](${pr_url}/files)
+[Link to Repo](https://github.com/${repo}/)
+[Build log here](https://github.com/${repo}/commit/${sha}/checks)`
+        case "push":
+            return `
+       
+Author:       ${push_author}
+        
+Commits:
+${push_commits.map(v => `[${v?.message} by ${v?.author?.username}](${v.url})\n`)}
+        
+[Link to Compare](${push_compare_url})
+[Link to Repo](https://github.com/${repo}/)`
         case "watch":
             return `
 ⭐️⭐️⭐️

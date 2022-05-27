@@ -44,6 +44,30 @@ inputs:
   pr_body:
     description: 'Body/Contents of the PR'
     default: ${{ github.event.pull_request.body }}
+  pr_base_ref:
+    description: 'Target branch of merged PR'
+    default: ${{ github.event.pull_request.base.ref }}
+  pr_head_ref:
+    description: 'Merging branch of PR'
+    default: ${{ github.event.pull_request.head.ref }}
+  pr_changed_files:
+    description: 'Count of changed files in PR'
+    default: ${{ github.event.pull_request.changed_files }}
+  pr_url:
+    description: 'Link to PR'
+    default: ${{ github.event.pull_request.html_url }}
+  pr_merged_by:
+    description: 'Merged by User'
+    default: ${{ github.event.pull_request.merged_by }}
+  push_commits:
+    description: 'Push commits'
+    default: ${{ github.event.commits }}
+  push_compare_url:
+    description: 'Compare url'
+    default: ${{ github.event.compare }}
+  push_author:
+    description: 'Pusher'
+    default: ${{ github.event.pusher.name }}
 runs:
   using: "node12"
   main: "dist/index.js"
