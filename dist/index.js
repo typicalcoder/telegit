@@ -6769,26 +6769,6 @@ module.exports.implForWrapper = function (wrapper) {
 
 /***/ }),
 
-/***/ 4837:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TemplateEnum = void 0;
-var TemplateEnum;
-(function (TemplateEnum) {
-    TemplateEnum["push"] = "push";
-    TemplateEnum["issues"] = "issues";
-    TemplateEnum["pull_request"] = "pull_request";
-    TemplateEnum["pull_request_target"] = "pull_request_target";
-    TemplateEnum["schedule"] = "schedule";
-    TemplateEnum["default"] = "default";
-})(TemplateEnum = exports.TemplateEnum || (exports.TemplateEnum = {}));
-
-
-/***/ }),
-
 /***/ 5160:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -6805,15 +6785,13 @@ const pull_request_target_1 = __importDefault(__nccwpck_require__(897));
 const issues_1 = __importDefault(__nccwpck_require__(227));
 const schedule_1 = __importDefault(__nccwpck_require__(8400));
 const default_1 = __importDefault(__nccwpck_require__(5037));
-const enums_1 = __nccwpck_require__(4837);
 const getTemplate = (type) => {
-    console.log(type);
     switch (type) {
-        case enums_1.TemplateEnum.push: return push_1.default;
-        case enums_1.TemplateEnum.pull_request: return pull_request_1.default;
-        case enums_1.TemplateEnum.pull_request_target: return pull_request_target_1.default;
-        case enums_1.TemplateEnum.issues: return issues_1.default;
-        case enums_1.TemplateEnum.schedule: return schedule_1.default;
+        case 'push': return push_1.default;
+        case 'pull_request': return pull_request_1.default;
+        case 'pull_request_target': return pull_request_target_1.default;
+        case 'issues': return issues_1.default;
+        case 'schedule': return schedule_1.default;
         default: return default_1.default;
     }
 };
