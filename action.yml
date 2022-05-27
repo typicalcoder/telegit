@@ -64,7 +64,7 @@ inputs:
     default: ${{ github.event.commits }}
   push_compare_url:
     description: 'Compare url'
-    default: ${{ github.event.compare }}
+    default: ${{ github.event.compare[] }}
   push_author:
     description: 'Pusher'
     default: ${{ github.event.pusher.name }}
