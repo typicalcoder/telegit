@@ -4,6 +4,7 @@ import prTargetTemplate from './templates/pull_request_target';
 import issuesTemplate from './templates/issues';
 import scheduleTemplate from './templates/schedule';
 import defaultTemplate from './templates/default';
+import {TemplateEnum} from "./enums";
 const getTemplate = (type: TemplateEnum): string => {
     switch (type) {
         case TemplateEnum.push: return pushTemplate;

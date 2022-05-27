@@ -1,4 +1,4 @@
-enum TemplateEnum {
+export enum TemplateEnum {
     push = "push",
     issues = "issues",
     pull_request = "pull_request",
