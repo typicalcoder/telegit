@@ -97,6 +97,7 @@ Merged By:          ${merged_by.login}
 
         case "push":
             return `
+Commited to       ${process.env.GITHUB_REF.split("/").at(-1)}
 Author:       ${push_author}
         
 Commits:
