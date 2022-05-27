@@ -1,4 +1,4 @@
-name: 'Telewire'
+name: 'Telegit'
 description: 'Connect your GitHub Repo to Telegram'
 author: 'athul'
 inputs: 
@@ -53,6 +53,9 @@ inputs:
   pr_changed_files:
     description: 'Count of changed files in PR'
     default: ${{ github.event.pull_request.changed_files }}
+  pr_requested_reviewers:
+    description: 'Requested reviews'
+    default: ${{ toJSON(github.event.pull_request.requested_reviewers) }}
   pr_url:
     description: 'Link to PR'
     default: ${{ github.event.pull_request.html_url }}
@@ -72,7 +75,7 @@ inputs:
     description: 'Pusher'
     default: ${{ github.event.pusher.name }}
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/index.js"
 branding:
   icon: 'repeat'  
