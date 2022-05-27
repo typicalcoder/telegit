@@ -3666,11 +3666,10 @@ Merged By:          ${merged_by.login}
 Author:       ${push_author}
         
 Commits:
-${push_commits}
+${spush_commits.map(v => `[${v.message} by ${v.author.username}](${v.url})\n`)}
         
 [Link to Compare](${push_compare_url})
 [Link to Repo](https://github.com/${repo}/)`
-        //${JSON.parse(push_commits).map(v => `[${v?.message} by ${v?.author?.username}](${v.url})\n`)}
         case "watch":
             return `
 ⭐️⭐️⭐️
