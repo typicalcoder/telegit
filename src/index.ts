@@ -1,9 +1,9 @@
-require("dotenv").config
-const Bot = require('node-telegram-bot-api');
+import 'dotenv/config'
+import { Telegraf } from 'telegraf';
 const {
     INPUT_STATUS: ipstatus,
-    INPUT_TOKEN: tgtoken,
-    INPUT_CHAT: chatid,
+    INPUT_TOKEN: tgtoken = "",
+    INPUT_CHAT: chatid = "",
     INPUT_IU_TITLE: ititle,
     INPUT_IU_NUM: inum,
     INPUT_IU_ACTOR: iactor,
@@ -29,7 +29,7 @@ const {
     GITHUB_WORKFLOW: ghwrkflw
 } = process.env;
 
-const bot = new Bot(tgtoken)
+const bot = new Telegraf(tgtoken);
 
 const evresp = (gevent: string) => {
     switch (gevent) {
@@ -156,4 +156,4 @@ Tag:        ${process.env.GITHUB_REF}
             `
     }
 }
-export default () => bot.sendMessage(chatid, evresp(ghevent || ''), { parse_mode : "Markdown" })
+bot.telegram.sendMessage(chatid, evresp(ghevent || ''), { parse_mode : "Markdown" })
