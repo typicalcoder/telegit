@@ -3669,7 +3669,7 @@ Pushed commits to ${ref[ref.length - 1]}
 Author:       ${push_author}
         
 Commits:
-${JSON.parse(push_commits).map(v => `  [${v.message} by ${v.author.username}](${v.url})\n  `)}
+${JSON.parse(push_commits).map(v => `  [${v.message} by ${v.author.username}](${v.url})  `).join('\n')}
         
 [Link to Compare](${push_compare_url})
 [Link to Repo](https://github.com/${repo}/)`
