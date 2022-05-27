@@ -6904,7 +6904,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = process.env.INPUT_PR_STATE === 'review_requested' ? `
 ${process.env.GITHUB_ACTOR} requested Reviews from:
 ${process.env.INPUT_PR_REQUESTED_REVIEWERS &&
-    JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS).length > 0 &&
+    JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS) &&
     JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS).map((v) => `  ${v.login}  `).join('\n')}
 
 PR Title:       ${process.env.INPUT_PR_TITLE}
@@ -6938,7 +6938,7 @@ Author:       ${process.env.INPUT_PUSH_AUTHOR}
         
 Commits:
 ${process.env.INPUT_PUSH_COMMITS &&
-    JSON.parse(process.env.INPUT_PUSH_COMMITS).length > 0 &&
+    JSON.parse(process.env.INPUT_PUSH_COMMITS) &&
     JSON.parse(process.env.INPUT_PUSH_COMMITS).map((v) => `  [${v.message} by ${v.author.username}](${v.url})  `).join('\n')}
         
 [Link to Compare](${process.env.INPUT_PUSH_COMPARE_URL})
