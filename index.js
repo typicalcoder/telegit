@@ -98,7 +98,8 @@ Merged By:          ${merged_by.login}
         case "push":
             const ref = process.env.GITHUB_REF.split('/');
             return `
-Committed to       ${ref[ref.length - 1]}
+Pushed commits to ${ref[ref.length - 1]}
+
 Author:       ${push_author}
         
 Commits:
