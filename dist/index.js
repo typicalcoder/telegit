@@ -6769,6 +6769,175 @@ module.exports.implForWrapper = function (wrapper) {
 
 /***/ }),
 
+/***/ 5160:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getTemplate = void 0;
+const push_1 = __importDefault(__nccwpck_require__(5794));
+const pull_request_1 = __importDefault(__nccwpck_require__(6183));
+const pull_request_target_1 = __importDefault(__nccwpck_require__(897));
+const issues_1 = __importDefault(__nccwpck_require__(227));
+const schedule_1 = __importDefault(__nccwpck_require__(8400));
+const default_1 = __importDefault(__nccwpck_require__(5037));
+const getTemplate = (type) => {
+    switch (type) {
+        case TemplateEnum.push: return push_1.default;
+        case TemplateEnum.pull_request: return pull_request_1.default;
+        case TemplateEnum.pull_request_target: return pull_request_target_1.default;
+        case TemplateEnum.issues: return issues_1.default;
+        case TemplateEnum.schedule: return schedule_1.default;
+        default: return default_1.default;
+    }
+};
+exports.getTemplate = getTemplate;
+
+
+/***/ }),
+
+/***/ 5037:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `            
+ID: ${process.env.GITHUB_WORKFLOW}
+        
+Action was a *${process.env.INPUT_STATUS}!*
+        
+\`Repository:  ${process.env.GITHUB_REPOSITORY}\` 
+        
+Event:          *${process.env.GITHUB_EVENT_NAME}*
+        
+By:            *${process.env.GITHUB_ACTOR}* 
+        
+Tag:        ${process.env.GITHUB_REF}
+        
+[Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)
+            `;
+
+
+/***/ }),
+
+/***/ 227:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `
+❗️❗️❗️❗️❗️❗️
+        
+Issue ${process.env.INPUT_PR_STATE} 
+
+Issue Title and Number  : ${process.env.INPUT_IU_TITLE} | #${process.env.INPUT_IU_NUM}
+
+Commented or Created By : \`${process.env.INPUT_IU_ACTOR}\`
+
+Issue Body : *${process.env.INPUT_IU_BODY}*
+
+[Link to Issue](https://github.com/${process.env.GITHUB_REPOSITORY}/issues/${process.env.INPUT_IU_NUM})
+[Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)
+[Build log here](https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}/checks)`;
+
+
+/***/ }),
+
+/***/ 6183:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `
+PR ${process.env.INPUT_PR_STATE} 
+        
+PR Number:      ${process.env.INPUT_PR_NUM}
+        
+PR Title:       ${process.env.INPUT_PR_TITLE}
+        
+PR Body:        *${process.env.INPUT_PR_BODY}*
+        
+Merged By:          ${process.env.GITHUB_ACTOR}
+        
+[Link to PR](https://github.com/${process.env.GITHUB_REPOSITORY}/pull/${process.env.INPUT_PR_NUM})
+[Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)
+[Build log here](https://github.com/${process.env.GITHUB_REPOSITORY}/commit/${process.env.GITHUB_SHA}/checks)`;
+
+
+/***/ }),
+
+/***/ 897:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `
+PR ${process.env.INPUT_PR_MERGED ? "merged" : process.env.INPUT_PR_MERGED}
+        
+PR Title:       ${process.env.INPUT_PR_TITLE}
+        
+PR Body:        *${process.env.INPUT_PR_BODY}*
+        
+Merged By:          ${process.env.INPUT_PR_MERGED_BY}
+        
+[Link to Diff](${process.env.INPUT_PR_URL}/files)
+[Link to Repo](https://github.com/${process.env.GITHUB_REPOSITORY}/)`;
+
+
+/***/ }),
+
+/***/ 5794:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `
+Pushed commits to ${(process.env.GITHUB_REF || '').split('/').pop()}
+
+Author:       ${process.env.INPUT_PUSH_AUTHOR}
+        
+Commits:
+${process.env.INPUT_PUSH_COMMITS &&
+    JSON.parse(process.env.INPUT_PUSH_COMMITS).map((v) => `  [${v.message} by ${v.author.username}](${v.url})  `).join('\n')}
+        
+[Link to Compare](${process.env.INPUT_PUSH_COMPARE_URL})
+[Link to Repo](https://github.com/${process.env.GITHUB_REPOSITORY}/)`;
+
+
+/***/ }),
+
+/***/ 8400:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = `
+⏱⏰⏱⏰⏱⏰
+        
+ID: ${process.env.GITHUB_WORKFLOW}
+        
+Run *${process.env.INPUT_STATUS}!*
+        
+*Action was Run on Schedule*
+        
+\`Repository:  ${process.env.GITHUB_REPOSITORY}\` 
+        
+[Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)
+            `;
+
+
+/***/ }),
+
 /***/ 2628:
 /***/ ((module) => {
 
@@ -10452,7 +10621,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
-/******/ 			__webpack_modules__[moduleId](module, module.exports, __nccwpck_require__);
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
 /******/ 			threw = false;
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
@@ -10477,132 +10646,11 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 __nccwpck_require__(8582);
 const telegraf_1 = __nccwpck_require__(1747);
-const { INPUT_STATUS: ipstatus, INPUT_TOKEN: tgtoken = "", INPUT_CHAT: chatid = "", INPUT_IU_TITLE: ititle, INPUT_IU_NUM: inum, INPUT_IU_ACTOR: iactor, INPUT_IU_BODY: ibody, INPUT_PR_NUM: pnum, INPUT_PR_STATE: prstate, INPUT_PR_TITLE: ptitle, INPUT_PR_BODY: pbody, INPUT_PR_BASE_REF: base_ref, INPUT_PR_HEAD_REF: head_ref, INPUT_PR_CHANGED_FILES: changed_files, INPUT_PR_MERGED_BY: merged_by, INPUT_PR_MERGED: merged, INPUT_PR_URL: pr_url, INPUT_PUSH_AUTHOR: push_author, INPUT_PUSH_COMPARE_URL: push_compare_url, INPUT_PUSH_COMMITS: push_commits, GITHUB_EVENT_NAME: ghevent, GITHUB_REPOSITORY: repo, GITHUB_ACTOR: ghactor, GITHUB_SHA: sha, GITHUB_REF: ref, GITHUB_WORKFLOW: ghwrkflw } = process.env;
-const bot = new telegraf_1.Telegraf(tgtoken);
-const evresp = (gevent) => {
-    switch (gevent) {
-        case "issues":
-            return `
-❗️❗️❗️❗️❗️❗️
-        
-Issue ${prstate}
-
-Issue Title and Number  : ${ititle} | #${inum}
-
-Commented or Created By : \`${iactor}\`
-
-Issue Body : *${ibody}*
-
-[Link to Issue](https://github.com/${repo}/issues/${inum})
-[Link to Repo ](https://github.com/${repo}/)
-[Build log here](https://github.com/${repo}/commit/${sha}/checks)`;
-        case "issue_comment":
-            return `
-🗣🗣🗣🗣🗣🗣
-
-Issue ${prstate}
-
-Issue Title and Number  : ${ititle} | #${inum}
-
-Commented or Created By : \`${iactor}\`
-
-Issue Body : *${ibody}*
-
-Issue Comment: \`${process.env.INPUT_IU_COM}\`
-
-[Link to Issue](https://github.com/${repo}/issues/${inum})
-[Link to Repo ](https://github.com/${repo}/)
-[Build log here](https://github.com/${repo}/commit/${sha}/checks)
-            `;
-        case "pull_request":
-            return `
-🔃🔀🔃🔀🔃🔀
-PR ${prstate} 
-        
-PR Number:      ${pnum}
-        
-PR Title:       ${ptitle}
-        
-PR Body:        *${pbody}*
-        
-Merged By:          ${ghactor}
-        
-[Link to PR](https://github.com/${repo}/pull/${pnum})
-[Link to Repo ](https://github.com/${repo}/)
-[Build log here](https://github.com/${repo}/commit/${sha}/checks)`;
-        case "pull_request_target":
-            return `
-PR ${merged ? "merged" : prstate}
-        
-PR Title:       ${ptitle}
-        
-PR Body:        *${pbody}*
-        
-Merged By:          ${merged_by}
-        
-[Link to Diff](${pr_url}/files)
-[Link to Repo](https://github.com/${repo}/)`;
-        case "push":
-            const refArr = (ref || '').split('/');
-            return `
-Pushed commits to ${refArr[refArr.length - 1]}
-
-Author:       ${push_author}
-        
-Commits:
-${push_commits && JSON.parse(push_commits).map((v) => `  [${v.message} by ${v.author.username}](${v.url})  `).join('\n')}
-        
-[Link to Compare](${push_compare_url})
-[Link to Repo](https://github.com/${repo}/)`;
-        case "watch":
-            return `
-⭐️⭐️⭐️
-
-By:            *${ghactor}* 
-        
-\`Repository:  ${repo}\` 
-        
-Star Count      ${process.env.INPUT_STARGAZERS}
-        
-Fork Count      ${process.env.INPUT_FORKERS}
-        
-[Link to Repo ](https://github.com/${repo}/)
-            `;
-        case "schedule":
-            return `
-⏱⏰⏱⏰⏱⏰
-        
-ID: ${ghwrkflw}
-        
-Run *${ipstatus}!*
-        
-*Action was Run on Schedule*
-        
-\`Repository:  ${repo}\` 
-        
-[Link to Repo ](https://github.com/${repo}/)
-            `;
-        default:
-            return `
-⬆️⇅⬆️⇅
-            
-ID: ${ghwrkflw}
-        
-Action was a *${ipstatus}!*
-        
-\`Repository:  ${repo}\` 
-        
-On:          *${ghevent}*
-        
-By:            *${ghactor}* 
-        
-Tag:        ${process.env.GITHUB_REF}
-        
-[Link to Repo ](https://github.com/${repo}/)
-            `;
-    }
-};
-bot.telegram.sendMessage(chatid, evresp(ghevent || ''), { parse_mode: "Markdown" });
+const getTemplate_1 = __nccwpck_require__(5160);
+if (process.env.INPUT_TOKEN && process.env.INPUT_CHAT) {
+    const bot = new telegraf_1.Telegraf(process.env.INPUT_TOKEN);
+    bot.telegram.sendMessage(process.env.INPUT_CHAT, (0, getTemplate_1.getTemplate)((process.env.GITHUB_EVENT_NAME || 'default')), { parse_mode: "Markdown" });
+}
 
 })();
 
