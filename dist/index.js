@@ -6880,18 +6880,21 @@ Merged By:          ${process.env.GITHUB_ACTOR}
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = process.env.INPUT_PR_STATE === 'review_requested' ? `
+PR: ${process.env.INPUT_PR_TITLE}
+${process.env.INPUT_PR_HEAD_REF} -> ${process.env.INPUT_PR_BASE_REF}
+
 ${process.env.GITHUB_ACTOR} requested Reviews from:
+
 ${process.env.INPUT_PR_REQUESTED_REVIEWERS &&
     JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS) &&
     JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS).map((v) => `  ${v.login}  `).join('\n')}
-
-PR Title:       ${process.env.INPUT_PR_TITLE}
 
 [Link to Diff](${process.env.INPUT_PR_URL}/files)
 ` : `
 PR ${process.env.INPUT_PR_MERGED ? "merged" : process.env.INPUT_PR_STATE}
         
 PR Title:       ${process.env.INPUT_PR_TITLE}
+${process.env.INPUT_PR_HEAD_REF} -> ${process.env.INPUT_PR_BASE_REF}
         
 PR Body:        *${process.env.INPUT_PR_BODY}*
         
