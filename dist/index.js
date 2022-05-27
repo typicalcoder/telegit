@@ -6807,6 +6807,7 @@ const schedule_1 = __importDefault(__nccwpck_require__(8400));
 const default_1 = __importDefault(__nccwpck_require__(5037));
 const enums_1 = __nccwpck_require__(4837);
 const getTemplate = (type) => {
+    console.log(type);
     switch (type) {
         case enums_1.TemplateEnum.push: return push_1.default;
         case enums_1.TemplateEnum.pull_request: return pull_request_1.default;

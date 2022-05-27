@@ -6,6 +6,7 @@ import scheduleTemplate from './templates/schedule';
 import defaultTemplate from './templates/default';
 import {TemplateEnum} from "./enums";
 const getTemplate = (type: TemplateEnum): string => {
+    console.log(type);
     switch (type) {
         case TemplateEnum.push: return pushTemplate;
         case TemplateEnum.pull_request: return prTemplate;
