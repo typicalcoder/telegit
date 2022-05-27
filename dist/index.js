@@ -3662,8 +3662,9 @@ Merged By:          ${merged_by.login}
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
 
         case "push":
+            const ref = process.env.GITHUB_REF.split('/');
             return `
-Commited to       ${process.env.GITHUB_REF.split("/").at(-1)}
+Committed to       ${ref[ref.length - 1]}
 Author:       ${push_author}
         
 Commits:
