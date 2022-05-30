@@ -55,7 +55,7 @@ inputs:
     default: ${{ github.event.pull_request.changed_files }}
   pr_requested_reviewers:
     description: 'Requested reviews'
-    default: ${{ toJSON(github.event.pull_request.requested_reviewers) }}
+    default: ${{ toJSON(github.event.pull_request.requested_reviewer) }}
   pr_url:
     description: 'Link to PR'
     default: ${{ github.event.pull_request.html_url }}

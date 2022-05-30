@@ -7,10 +7,7 @@ ${process.env.GITHUB_ACTOR} requested Reviews from:
 ${
     process.env.INPUT_PR_REQUESTED_REVIEWERS &&
     JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS) &&
-    JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS).map(
-        (v: Record<string, any>) =>
-            `  ${v.login}  `
-    ).join('\n')
+    JSON.parse(process.env.INPUT_PR_REQUESTED_REVIEWERS).login
 }
 
 [Link to Diff](${process.env.INPUT_PR_URL}/files)
