@@ -9,7 +9,7 @@ ${
     JSON.parse(process.env.INPUT_PUSH_COMMITS) &&
     JSON.parse(process.env.INPUT_PUSH_COMMITS).map(
         (v: Record<string, any>) => 
-            `  [${v.message} by ${v.author.username}](${v.url})  `
+            `  [${v.message.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("`", "\\`")} by ${v.author.username}](${v.url})  `
     ).join('\n')
 }
         

@@ -6941,7 +6941,7 @@ Author:       ${process.env.INPUT_PUSH_AUTHOR}
 Commits:
 ${process.env.INPUT_PUSH_COMMITS &&
     JSON.parse(process.env.INPUT_PUSH_COMMITS) &&
-    JSON.parse(process.env.INPUT_PUSH_COMMITS).map((v) => `  [${v.message} by ${v.author.username}](${v.url})  `).join('\n')}
+    JSON.parse(process.env.INPUT_PUSH_COMMITS).map((v) => `  [${v.message.replace("_", "\\_").replace("*", "\\*").replace("[", "\\[").replace("`", "\\`")} by ${v.author.username}](${v.url})  `).join('\n')}
         
 [Link to Compare](${process.env.INPUT_PUSH_COMPARE_URL})
 [Link to Repo](https://github.com/${process.env.GITHUB_REPOSITORY}/)`;
